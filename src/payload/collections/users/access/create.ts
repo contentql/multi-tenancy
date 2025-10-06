@@ -1,7 +1,6 @@
-import { Tenant, User } from '@payload-types'
+import { User } from '@payload-types'
 import type { Access } from 'payload'
 
-import { getUserTenantIDs } from '@/lib/getUserTenantIDs'
 import { isAdmin } from '@/payload/access/isAdmin'
 
 export const createAccess: Access<User> = ({ req }) => {
@@ -17,18 +16,18 @@ export const createAccess: Access<User> = ({ req }) => {
     return false
   }
 
-  const adminTenantAccessIDs = getUserTenantIDs(req.user, 'tenant-admin')
+  // const adminTenantAccessIDs = getUserTenantIDs(req.user, 'tenant-admin')
 
-  const requestedTenants: Tenant['id'][] =
-    req.data?.tenants?.map((t: { tenant: Tenant['id'] }) => t.tenant) ?? []
+  // const requestedTenants: Tenant['id'][] =
+  //   req.data?.tenants?.map((t: { tenant: Tenant['id'] }) => t.tenant) ?? []
 
-  const hasAccessToAllRequestedTenants = requestedTenants.every(tenantID =>
-    adminTenantAccessIDs.includes(tenantID),
-  )
+  // const hasAccessToAllRequestedTenants = requestedTenants.every(tenantID =>
+  //   adminTenantAccessIDs.includes(tenantID),
+  // )
 
-  if (hasAccessToAllRequestedTenants) {
-    return true
-  }
+  // if (hasAccessToAllRequestedTenants) {
+  //   return true
+  // }
 
   return false
 }

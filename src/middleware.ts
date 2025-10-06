@@ -141,7 +141,10 @@ export async function middleware(req: NextRequest) {
     const { docs } = await payload.find({
       collection: 'customDomains',
       where: {
-        hostname: { equals: currentHost },
+        and: [
+          { hostname: { equals: currentHost } },
+          { verified: { equals: true } },
+        ],
       },
       depth: 1,
     })

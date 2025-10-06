@@ -53,6 +53,8 @@ import { UploadElement as UploadElement_0b388c087d9de8c4f011dd323a130cfb } from 
 import { WithUpload as WithUpload_0b388c087d9de8c4f011dd323a130cfb } from '@payloadcms/richtext-slate/client'
 import { default as default_98c0f4abadca2c088b1f10febe84908a } from '@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnFieldLabel'
 import { default as default_695e6fdd1491837f16025ec4015b207f } from '@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnField'
+import { default as default_f36c1c1e530c3a27a694041e1f51a226 } from '@/payload/collections/custom-domains/components/VerifiedDomainField'
+import { default as default_4e43c91c649f26dd3a178285997b6d97 } from '@/payload/collections/custom-domains/components/CustomDomainInstructions'
 import { default as default_530a4a40d073f63a62d20ecc1c48a28a } from '@/payload/fields/common/theme/ColorField'
 import { default as default_63789004f810b61bd607a5896281c096 } from '@/payload/fields/common/theme/RadiusField'
 import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
@@ -120,6 +122,8 @@ export const importMap = {
   "@payloadcms/richtext-slate/client#WithUpload": WithUpload_0b388c087d9de8c4f011dd323a130cfb,
   "@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnFieldLabel#default": default_98c0f4abadca2c088b1f10febe84908a,
   "@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnField#default": default_695e6fdd1491837f16025ec4015b207f,
+  "@/payload/collections/custom-domains/components/VerifiedDomainField#default": default_f36c1c1e530c3a27a694041e1f51a226,
+  "@/payload/collections/custom-domains/components/CustomDomainInstructions#default": default_4e43c91c649f26dd3a178285997b6d97,
   "@/payload/fields/common/theme/ColorField#default": default_530a4a40d073f63a62d20ecc1c48a28a,
   "@/payload/fields/common/theme/RadiusField#default": default_63789004f810b61bd607a5896281c096,
   "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,

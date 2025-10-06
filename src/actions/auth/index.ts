@@ -61,6 +61,9 @@ export const signUpAction = publicClient
         slug: username,
         subdomain: username,
       },
+      context: {
+        skipAssignToTenantAdmin: true,
+      },
     })
 
     const response = await payload.create({

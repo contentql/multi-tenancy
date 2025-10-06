@@ -19,10 +19,20 @@ export const CustomDomains: CollectionConfig = {
     useAsTitle: 'hostname',
     group: AUTH_GROUP,
   },
-  versions: {
-    drafts: true,
-  },
   fields: [
+    {
+      name: 'verified',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: {
+        readOnly: true,
+        description: 'Indicates whether the custom domain has been verified',
+        components: {
+          Field:
+            '@/payload/collections/custom-domains/components/VerifiedDomainField',
+        },
+      },
+    },
     {
       name: 'hostname',
       type: 'text',
@@ -30,6 +40,17 @@ export const CustomDomains: CollectionConfig = {
         description: 'The custom domain hostname (e.g., example.com)',
       },
       required: true,
+      unique: true,
+    },
+    {
+      name: 'instructions',
+      type: 'ui',
+      admin: {
+        components: {
+          Field:
+            '@/payload/collections/custom-domains/components/CustomDomainInstructions',
+        },
+      },
     },
   ],
   hooks: {},

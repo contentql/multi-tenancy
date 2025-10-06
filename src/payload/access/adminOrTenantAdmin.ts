@@ -1,5 +1,5 @@
 import { getTenantFromCookie } from '@payloadcms/plugin-multi-tenant/utilities'
-import { Access } from 'payload'
+import { Access, FieldAccess } from 'payload'
 
 import { getCollectionIDType } from '@/lib/getCollectionIDType'
 import { getUserTenantIDs } from '@/lib/getUserTenantIDs'
@@ -80,5 +80,26 @@ export const adminOrTenantAdmin = async ({ req }: { req: any }) => {
       return true
     }
   }
+  return false
+}
+
+export const adminOrTenantAdminFieldAccess: FieldAccess = ({ req }) => {
+  if (isAdmin(req.user)) {
+    return true
+  }
+  const adminTenantAccessIDs = getUserTenantIDs(req.user, 'tenant-admin')
+
+  const selectedTenant = getTenantFromCookie(
+    req.headers,
+    getCollectionIDType({ payload: req.payload, collectionSlug: 'tenants' }),
+  )
+
+  if (
+    selectedTenant &&
+    adminTenantAccessIDs.includes(selectedTenant as string)
+  ) {
+    return true
+  }
+
   return false
 }

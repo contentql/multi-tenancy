@@ -1,9 +1,9 @@
 import { AUTH_GROUP } from '../constants'
 import { CollectionConfig } from 'payload'
 
-import { isAdminAccess } from '@/payload/access/isAdmin'
-
 import { updateAndDeleteAccess } from './access/updateAndDelete'
+import { afterTenantDeleteRemoveFromCookie } from './hooks/afterTenantDeleteRemoveFromCookie'
+import { assignToTenantAdmin } from './hooks/assignToTenantAdmin'
 
 export const Tenants: CollectionConfig = {
   slug: 'tenants',
@@ -12,11 +12,17 @@ export const Tenants: CollectionConfig = {
     group: AUTH_GROUP,
   },
   access: {
-    create: isAdminAccess,
+    create: updateAndDeleteAccess,
     delete: updateAndDeleteAccess,
     read: ({ req }) => Boolean(req.user),
     update: updateAndDeleteAccess,
   },
+
+  hooks: {
+    afterChange: [assignToTenantAdmin],
+    afterDelete: [afterTenantDeleteRemoveFromCookie],
+  },
+
   fields: [
     {
       name: 'name',

@@ -235,12 +235,12 @@ export default buildConfig({
     multiTenantPlugin({
       collections: {
         pages: {},
-        tenants: {},
         media: {},
         blogs: {},
         tags: {},
         customDomains: {},
         SiteSettings: { isGlobal: true },
+        // tenants: {},
       },
       tenantField: {
         access: {
@@ -253,6 +253,9 @@ export default buildConfig({
           },
         },
       },
+      tenantsSlug: 'tenants',
+      enabled: true,
+      cleanupAfterTenantDelete: true,
       tenantsArrayField: {
         includeDefaultField: false,
       },
