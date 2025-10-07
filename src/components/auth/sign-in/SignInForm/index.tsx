@@ -37,7 +37,8 @@ const SignInForm: React.FC = () => {
       if (userRole.includes('admin')) {
         router.push('/admin')
       } else if (userRole.includes('user')) {
-        router.push('/profile')
+        // router.push('/profile')
+        router.push('/admin')
       }
       reset()
     },
