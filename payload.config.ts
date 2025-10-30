@@ -1,5 +1,6 @@
 import { env } from '@env'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { resendAdapter } from '@payloadcms/email-resend'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
@@ -263,9 +264,9 @@ export default buildConfig({
   ],
   editor: lexicalEditor(),
   sharp,
-  // email: resendAdapter({
-  //   apiKey: env.RESEND_API_KEY!,
-  //   defaultFromAddress: env.RESEND_SENDER_EMAIL!,
-  //   defaultFromName: env.RESEND_SENDER_NAME!,
-  // }),
+  email: resendAdapter({
+    apiKey: env.RESEND_API_KEY!,
+    defaultFromAddress: env.RESEND_SENDER_EMAIL!,
+    defaultFromName: env.RESEND_SENDER_NAME!,
+  }),
 })
