@@ -104,7 +104,7 @@ const PageNotFound: React.FC = () => {
 
       <Link
         href='/'
-        className='rounded border border-[#45a6e9] bg-transparent px-4 py-2 text-[#45a6e9] shadow hover:border-transparent hover:bg-[#45a6e9] hover:text-white hover:shadow-lg'>
+        className='rounded border border-[#45a6e9] bg-transparent px-4 py-2 text-[#45a6e9] shadow-sm hover:border-transparent hover:bg-[#45a6e9] hover:text-white hover:shadow-lg'>
         <button>
           <ArrowLeft size={16} />
           Back to home

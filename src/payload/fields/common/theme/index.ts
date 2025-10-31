@@ -313,7 +313,7 @@ export const themeSettingsTab: Tab = {
             // ring
             {
               type: 'text',
-              name: 'ring',
+              name: 'ring-3',
               admin: {
                 components: {
                   Field: '@/payload/fields/common/theme/ColorField',
@@ -547,7 +547,7 @@ export const themeSettingsTab: Tab = {
             // ring
             {
               type: 'text',
-              name: 'ring',
+              name: 'ring-3',
               admin: {
                 components: {
                   Field: '@/payload/fields/common/theme/ColorField',
