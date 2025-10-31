@@ -75,10 +75,10 @@ const ColorField = ({ ...props }: TextFieldClientProps) => {
 
               // update lightTheme
               for (const [variableName, value] of Object.entries(lightTheme)) {
-                if (fields[`lightMode.${variableName}`]) {
+                if (fields[`themeSettings.lightMode.${variableName}`]) {
                   dispatch({
                     type: 'UPDATE',
-                    path: `lightMode.${variableName}`,
+                    path: `themeSettings.lightMode.${variableName}`,
                     value,
                     valid: true,
                   })
@@ -87,10 +87,10 @@ const ColorField = ({ ...props }: TextFieldClientProps) => {
 
               // update darkTheme
               for (const [variableName, value] of Object.entries(darkTheme)) {
-                if (fields[`darkMode.${variableName}`]) {
+                if (fields[`themeSettings.darkMode.${variableName}`]) {
                   dispatch({
                     type: 'UPDATE',
-                    path: `darkMode.${variableName}`,
+                    path: `themeSettings.darkMode.${variableName}`,
                     value,
                     valid: true,
                   })
