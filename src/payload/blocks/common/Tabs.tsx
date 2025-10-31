@@ -73,7 +73,7 @@ const TabComponent = ({
   }
 
   return (
-    <div className='container mx-auto max-w-screen-lg overflow-hidden px-10'>
+    <div className='container mx-auto overflow-hidden px-10'>
       <div className='tabs-component mx-auto max-w-2xl py-10'>
         <ul
           className='tab-links mb-5 flex list-none justify-center space-x-4 p-0'
@@ -141,7 +141,7 @@ export const TabContent = ({
     <motion.div
       role='tabpanel'
       id={id}
-      className='mx-auto mt-10 h-screen w-full overflow-y-scroll rounded-2xl bg-base-200 p-4 md:h-[500px] lg:max-w-4xl'
+      className='bg-base-200 mx-auto mt-10 h-screen w-full overflow-y-scroll rounded-2xl p-4 md:h-[500px] lg:max-w-4xl'
       variants={tabContentVariant}
       animate={active ? 'active' : 'inactive'}
       initial='inactive'>
