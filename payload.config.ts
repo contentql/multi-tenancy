@@ -185,7 +185,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: env.DATABASE_URI,
   }),
-  secret: 'TESTING',
+  secret: env.PAYLOAD_SECRET,
   plugins: [
     formPlugin,
     scheduleDocPublishPlugin({
