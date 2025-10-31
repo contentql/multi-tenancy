@@ -1,10 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { Variants, motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { JSONTree } from 'react-json-tree'
 
-const tabVariant = {
+const tabVariant: Variants = {
   active: {
     width: '45%',
     transition: {
@@ -21,7 +21,7 @@ const tabVariant = {
   },
 }
 
-const tabTextVariant = {
+const tabTextVariant: Variants = {
   active: {
     opacity: 1,
     x: 0,

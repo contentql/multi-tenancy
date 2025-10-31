@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion'
+import { motion, useMotionTemplate, useMotionValue } from 'motion/react'
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
@@ -40,10 +40,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            `placeholder-text-base-content duration-400 flex h-10 w-full rounded-rounded-btn border-none  bg-base-content bg-base-content/10 px-3 py-2 text-sm  text-base-content shadow-input 
-          transition file:border-0 file:bg-transparent file:text-sm 
-          file:font-medium focus-visible:outline-hidden focus-visible:ring-2
-           focus-visible:ring-base-content/40 
+            `placeholder-text-base-content duration-400 rounded-rounded-btn bg-base-content bg-base-content/10 text-base-content shadow-input  focus-visible:outline-hidden focus-visible:ring-base-content/40 flex h-10 w-full  border-none px-3 
+          py-2 text-sm transition file:border-0 
+          file:bg-transparent file:text-sm file:font-medium
+           focus-visible:ring-2 
            disabled:cursor-not-allowed
            disabled:opacity-50 group-hover/input:shadow-none
            `,
@@ -63,8 +63,8 @@ export { Input }
 export const BottomGradient = () => {
   return (
     <>
-      <span className='absolute inset-x-0 -bottom-px block h-px w-full bg-linear-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100' />
-      <span className='absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-linear-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-xs transition duration-500 group-hover/btn:opacity-100' />
+      <span className='bg-linear-to-r absolute inset-x-0 -bottom-px block h-px w-full from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100' />
+      <span className='bg-linear-to-r blur-xs absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 from-transparent via-indigo-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100' />
     </>
   )
 }
