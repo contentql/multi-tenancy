@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:22.12.0-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -11,7 +11,7 @@ COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+  elif [ -f pnpm-lock.yaml ]; then npm install -g corepack@latest && corepack enable && corepack prepare pnpm@10.12.0 --activate && pnpm i --frozen-lockfile; \
   else echo "Lockfile not found." && exit 1; \
   fi
 
@@ -21,8 +21,6 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -41,7 +39,7 @@ ARG S3_REGION
 ARG RESEND_API_KEY
 ARG RESEND_SENDER_EMAIL
 ARG RESEND_SENDER_NAME
-ARG OPENAPI_KEY
+
 
 ENV DATABASE_URI=$DATABASE_URI
 ENV PAYLOAD_SECRET=$PAYLOAD_SECRET
@@ -55,12 +53,12 @@ ENV S3_REGION=$S3_REGION
 ENV RESEND_API_KEY=$RESEND_API_KEY
 ENV RESEND_SENDER_EMAIL=$RESEND_SENDER_EMAIL
 ENV RESEND_SENDER_NAME=$RESEND_SENDER_NAME
-ENV OPENAPI_KEY=$OPENAPI_KEY
+
 
 RUN \
-  if [ -f yarn.lock ]; then yarn run ci; \
-  elif [ -f package-lock.json ]; then npm run ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run ci; \
+  if [ -f yarn.lock ]; then yarn run build; \
+  elif [ -f package-lock.json ]; then npm run build; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable && COREPACK_INTEGRITY_KEYS=0 corepack prepare pnpm@10.12.0 --activate && pnpm run build; \
   else echo "Lockfile not found." && exit 1; \
   fi
 
@@ -90,9 +88,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 USER nextjs
 
 EXPOSE 3000
-
-ENV PORT 3000
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD HOSTNAME="0.0.0.0" node server.js
+CMD ["node", "server.js"]

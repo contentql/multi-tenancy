@@ -13,7 +13,6 @@ const changeBasedOnENV = (env: any) => {
 export const env = createEnv({
   server: {
     DATABASE_URI: z.string(),
-    DATABASE_SECRET: z.string().optional(),
     PAYLOAD_SECRET: z.string().min(1),
     PAYLOAD_URL: z.string().url(),
     S3_ENDPOINT: z.string().optional(),
@@ -30,7 +29,6 @@ export const env = createEnv({
   },
   runtimeEnv: {
     DATABASE_URI: process.env.DATABASE_URI,
-    DATABASE_SECRET: process.env.DATABASE_SECRET,
     PAYLOAD_SECRET: process.env.PAYLOAD_SECRET,
     NEXT_PUBLIC_WEBSITE_URL: changeBasedOnENV(
       process.env.NEXT_PUBLIC_WEBSITE_URL ||
@@ -48,4 +46,5 @@ export const env = createEnv({
     RESEND_SENDER_EMAIL: process.env.RESEND_SENDER_EMAIL,
     RESEND_SENDER_NAME: process.env.RESEND_SENDER_NAME,
   },
+  emptyStringAsUndefined: true,
 })
