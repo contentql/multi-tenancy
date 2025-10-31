@@ -152,6 +152,12 @@ const formPlugin = formBuilderPlugin({
   },
 })
 
+const s3Enabled =
+  !!env.S3_ACCESS_KEY_ID &&
+  !!env.S3_BUCKET &&
+  !!env.S3_REGION &&
+  !!env.S3_SECRET_ACCESS_KEY
+
 export default buildConfig({
   admin: {
     components: {
@@ -231,6 +237,7 @@ export default buildConfig({
         endpoint: env.S3_ENDPOINT,
         region: env.S3_REGION,
       },
+      enabled: s3Enabled,
     }),
     multiTenantPlugin({
       collections: {

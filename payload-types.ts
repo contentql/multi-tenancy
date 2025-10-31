@@ -216,6 +216,9 @@ export interface Media {
   focalX?: number | null;
   focalY?: number | null;
   sizes?: {
+    square?: {
+      url?: string | null;
+    };
     thumbnail?: {
       url?: string | null;
       width?: number | null;
@@ -1159,6 +1162,11 @@ export interface MediaSelect<T extends boolean = true> {
   sizes?:
     | T
     | {
+        square?:
+          | T
+          | {
+              url?: T;
+            };
         thumbnail?:
           | T
           | {
