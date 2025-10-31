@@ -35,8 +35,10 @@ import { default as default_98c0f4abadca2c088b1f10febe84908a } from '@/payload/p
 import { default as default_695e6fdd1491837f16025ec4015b207f } from '@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnField'
 import { default as default_f36c1c1e530c3a27a694041e1f51a226 } from '@/payload/collections/custom-domains/components/VerifiedDomainField'
 import { default as default_4e43c91c649f26dd3a178285997b6d97 } from '@/payload/collections/custom-domains/components/CustomDomainInstructions'
-import { default as default_530a4a40d073f63a62d20ecc1c48a28a } from '@/payload/fields/common/theme/ColorField'
-import { default as default_63789004f810b61bd607a5896281c096 } from '@/payload/fields/common/theme/RadiusField'
+import { default as default_716d92e4b4cca6507e5e98f7e54f5349 } from '@/payload/fields/theme/ColorField'
+import { default as default_2a5cc71bd475f95770573bcae4ff398a } from '@/payload/fields/theme/ColorFieldDescription'
+import { default as default_ec83c8500116c9123747ef2f266397c0 } from '@/payload/fields/theme/FontFieldDescription'
+import { default as default_d25165dc99ddf39f9b76c9dfbc43f7c3 } from '@/payload/fields/theme/RadiusField'
 import { LinkToDoc as LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { ReindexButton as ReindexButton_aead06e4cbf6b2620c5c51c9ab283634 } from '@payloadcms/plugin-search/client'
 import { default as default_fe373fe27f1063cfe032cdbcc74c397a } from '../../../../src/payload/style/icons/Icon.tsx'
@@ -84,8 +86,10 @@ export const importMap = {
   "@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnField#default": default_695e6fdd1491837f16025ec4015b207f,
   "@/payload/collections/custom-domains/components/VerifiedDomainField#default": default_f36c1c1e530c3a27a694041e1f51a226,
   "@/payload/collections/custom-domains/components/CustomDomainInstructions#default": default_4e43c91c649f26dd3a178285997b6d97,
-  "@/payload/fields/common/theme/ColorField#default": default_530a4a40d073f63a62d20ecc1c48a28a,
-  "@/payload/fields/common/theme/RadiusField#default": default_63789004f810b61bd607a5896281c096,
+  "@/payload/fields/theme/ColorField#default": default_716d92e4b4cca6507e5e98f7e54f5349,
+  "@/payload/fields/theme/ColorFieldDescription#default": default_2a5cc71bd475f95770573bcae4ff398a,
+  "@/payload/fields/theme/FontFieldDescription#default": default_ec83c8500116c9123747ef2f266397c0,
+  "@/payload/fields/theme/RadiusField#default": default_d25165dc99ddf39f9b76c9dfbc43f7c3,
   "@payloadcms/plugin-search/client#LinkToDoc": LinkToDoc_aead06e4cbf6b2620c5c51c9ab283634,
   "@payloadcms/plugin-search/client#ReindexButton": ReindexButton_aead06e4cbf6b2620c5c51c9ab283634,
   "/src/payload/style/icons/Icon.tsx#default": default_fe373fe27f1063cfe032cdbcc74c397a,

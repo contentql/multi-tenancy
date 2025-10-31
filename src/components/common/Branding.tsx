@@ -8,7 +8,6 @@ import {
   getCSSAndLinkGoogleFonts,
   mimeTypes,
 } from '@/utils/googleFont'
-import { hexToHsl } from '@/utils/hexToHsl'
 
 type ThemeStylesType = {
   colors: SiteSetting['themeSettings']['lightMode']
@@ -21,27 +20,40 @@ type ThemeStylesType = {
 
 function generateThemeVariables({ colors, radius, fontName }: ThemeStylesType) {
   return `
-      --primary: ${hexToHsl(colors.primary)};
-      --primary-foreground: ${hexToHsl(colors.primaryForeground)};
-      --secondary: ${hexToHsl(colors.secondary)};
-      --secondary-foreground: ${hexToHsl(colors.secondaryForeground)};
-      --accent: ${hexToHsl(colors.accent)};
-      --accent-foreground: ${hexToHsl(colors.accentForeground)};
-      --background: ${hexToHsl(colors.background)};
-      --foreground: ${hexToHsl(colors.foreground)};
-      --card: ${hexToHsl(colors.card)};
-      --card-foreground: ${hexToHsl(colors.cardForeground)};
-      --popover: ${hexToHsl(colors.popover)};
-      --popover-foreground: ${hexToHsl(colors.popoverForeground)};
-      --muted: ${hexToHsl(colors.muted)};
-      --muted-foreground: ${hexToHsl(colors.mutedForeground)};
-      --destructive: ${hexToHsl(colors.destructive)};
-      --border: ${hexToHsl(colors.border)};
-      --input: ${hexToHsl(colors.input)};
-      --ring: ${hexToHsl(colors.ring)};
+      --primary: ${colors.primary};
+      --primary-foreground: ${colors.primaryForeground};
+      --secondary: ${colors.secondary};
+      --secondary-foreground: ${colors.secondaryForeground};
+      --accent: ${colors.accent};
+      --accent-foreground: ${colors.accentForeground};
+      --background: ${colors.background};
+      --foreground: ${colors.foreground};
+      --card: ${colors.card};
+      --card-foreground: ${colors.cardForeground};
+      --popover: ${colors.popover};
+      --popover-foreground: ${colors.popoverForeground};
+      --muted: ${colors.muted};
+      --muted-foreground: ${colors.mutedForeground};
+      --destructive: ${colors.destructive};
+      --border: ${colors.border};
+      --input: ${colors.input};
+      --ring: ${colors.ring};
+      --chart-1: ${colors.chart1};
+      --chart-2: ${colors.chart2};
+      --chart-3: ${colors.chart3};
+      --chart-4: ${colors.chart4};
+      --chart-5: ${colors.chart5};
+      --sidebar: ${colors.sidebar};
+      --sidebar-foreground: ${colors.sidebarForeground};
+      --sidebar-primary: ${colors.sidebarPrimary};
+      --sidebar-primary-foreground: ${colors.sidebarPrimaryForeground};
+      --sidebar-accent: ${colors.sidebarAccent};
+      --sidebar-accent-foreground: ${colors.sidebarAccentForeground};
+      --sidebar-border: ${colors.sidebarBorder};
+      --sidebar-ring: ${colors.sidebarRing};
       --font-display: ${fontName.display || ''};
       --font-body: ${fontName.body || ''};
-      --border-radius: ${borderRadius[radius]}rem;
+      --border-radius: ${borderRadius[radius]};
   `
 }
 
