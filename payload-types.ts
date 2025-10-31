@@ -680,30 +680,6 @@ export interface SiteSetting {
      */
     ogImageUrl: string | Media;
     keywords?: string[] | null;
-    /**
-     * This field is used to format currency values & used as default currency for ecommerce-theme
-     */
-    currency:
-      | 'usd'
-      | 'eur'
-      | 'inr'
-      | 'gbp'
-      | 'jpy'
-      | 'cad'
-      | 'aud'
-      | 'chf'
-      | 'cny'
-      | 'hkd'
-      | 'sgd'
-      | 'mxn'
-      | 'brl'
-      | 'rub'
-      | 'krw'
-      | 'zar'
-      | 'try'
-      | 'sar'
-      | 'aed'
-      | 'pln';
   };
   navbar: {
     logo: BrandLogo;
@@ -865,19 +841,15 @@ export interface SiteSetting {
     measurementId?: string | null;
   };
   themeSettings: {
-    /**
-     * Check this field to enable overriding local styles with admin-panel styles
-     */
-    overrideTheme: boolean;
     lightMode: {
       background: string;
       foreground: string;
-      primary: string;
-      primaryForeground: string;
       card: string;
       cardForeground: string;
       popover: string;
       popoverForeground: string;
+      primary: string;
+      primaryForeground: string;
       secondary: string;
       secondaryForeground: string;
       muted: string;
@@ -889,16 +861,29 @@ export interface SiteSetting {
       border: string;
       input: string;
       ring: string;
+      chart1: string;
+      chart2: string;
+      chart3: string;
+      chart4: string;
+      chart5: string;
+      sidebar: string;
+      sidebarForeground: string;
+      sidebarPrimary: string;
+      sidebarPrimaryForeground: string;
+      sidebarAccent: string;
+      sidebarAccentForeground: string;
+      sidebarBorder: string;
+      sidebarRing: string;
     };
     darkMode: {
       background: string;
       foreground: string;
-      primary: string;
-      primaryForeground: string;
       card: string;
       cardForeground: string;
       popover: string;
       popoverForeground: string;
+      primary: string;
+      primaryForeground: string;
       secondary: string;
       secondaryForeground: string;
       muted: string;
@@ -910,6 +895,19 @@ export interface SiteSetting {
       border: string;
       input: string;
       ring: string;
+      chart1: string;
+      chart2: string;
+      chart3: string;
+      chart4: string;
+      chart5: string;
+      sidebar: string;
+      sidebarForeground: string;
+      sidebarPrimary: string;
+      sidebarPrimaryForeground: string;
+      sidebarAccent: string;
+      sidebarAccentForeground: string;
+      sidebarBorder: string;
+      sidebarRing: string;
     };
     fonts: {
       display: {
@@ -1356,7 +1354,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         faviconUrl?: T;
         ogImageUrl?: T;
         keywords?: T;
-        currency?: T;
       };
   navbar?:
     | T
@@ -1459,18 +1456,17 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   themeSettings?:
     | T
     | {
-        overrideTheme?: T;
         lightMode?:
           | T
           | {
               background?: T;
               foreground?: T;
-              primary?: T;
-              primaryForeground?: T;
               card?: T;
               cardForeground?: T;
               popover?: T;
               popoverForeground?: T;
+              primary?: T;
+              primaryForeground?: T;
               secondary?: T;
               secondaryForeground?: T;
               muted?: T;
@@ -1482,18 +1478,31 @@ export interface SiteSettingsSelect<T extends boolean = true> {
               border?: T;
               input?: T;
               ring?: T;
+              chart1?: T;
+              chart2?: T;
+              chart3?: T;
+              chart4?: T;
+              chart5?: T;
+              sidebar?: T;
+              sidebarForeground?: T;
+              sidebarPrimary?: T;
+              sidebarPrimaryForeground?: T;
+              sidebarAccent?: T;
+              sidebarAccentForeground?: T;
+              sidebarBorder?: T;
+              sidebarRing?: T;
             };
         darkMode?:
           | T
           | {
               background?: T;
               foreground?: T;
-              primary?: T;
-              primaryForeground?: T;
               card?: T;
               cardForeground?: T;
               popover?: T;
               popoverForeground?: T;
+              primary?: T;
+              primaryForeground?: T;
               secondary?: T;
               secondaryForeground?: T;
               muted?: T;
@@ -1505,6 +1514,19 @@ export interface SiteSettingsSelect<T extends boolean = true> {
               border?: T;
               input?: T;
               ring?: T;
+              chart1?: T;
+              chart2?: T;
+              chart3?: T;
+              chart4?: T;
+              chart5?: T;
+              sidebar?: T;
+              sidebarForeground?: T;
+              sidebarPrimary?: T;
+              sidebarPrimaryForeground?: T;
+              sidebarAccent?: T;
+              sidebarAccentForeground?: T;
+              sidebarBorder?: T;
+              sidebarRing?: T;
             };
         fonts?:
           | T
