@@ -73,7 +73,6 @@ export interface Config {
     pages: Page;
     blogs: Blog;
     tags: Tag;
-    customDomains: CustomDomain;
     SiteSettings: SiteSetting;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -90,7 +89,6 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     tags: TagsSelect<false> | TagsSelect<true>;
-    customDomains: CustomDomainsSelect<false> | CustomDomainsSelect<true>;
     SiteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -648,24 +646,6 @@ export interface Tag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "customDomains".
- */
-export interface CustomDomain {
-  id: string;
-  tenant?: (string | null) | Tenant;
-  /**
-   * Indicates whether the custom domain has been verified
-   */
-  verified?: boolean | null;
-  /**
-   * The custom domain hostname (e.g., example.com)
-   */
-  hostname: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "SiteSettings".
  */
 export interface SiteSetting {
@@ -803,6 +783,19 @@ export interface SiteSetting {
       | null;
     copyright?: string | null;
   };
+  domains?:
+    | {
+        /**
+         * Indicates whether the custom domain has been verified
+         */
+        verified?: boolean | null;
+        /**
+         * The custom domain hostname (e.g., example.com)
+         */
+        hostname: string;
+        id?: string | null;
+      }[]
+    | null;
   redirectionLinks?: {
     /**
      * This redirects to a blog details page
@@ -1024,10 +1017,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'tags';
         value: string | Tag;
-      } | null)
-    | ({
-        relationTo: 'customDomains';
-        value: string | CustomDomain;
       } | null)
     | ({
         relationTo: 'SiteSettings';
@@ -1339,17 +1328,6 @@ export interface TagsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "customDomains_select".
- */
-export interface CustomDomainsSelect<T extends boolean = true> {
-  tenant?: T;
-  verified?: T;
-  hostname?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "SiteSettings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -1446,6 +1424,13 @@ export interface SiteSettingsSelect<T extends boolean = true> {
               id?: T;
             };
         copyright?: T;
+      };
+  domains?:
+    | T
+    | {
+        verified?: T;
+        hostname?: T;
+        id?: T;
       };
   redirectionLinks?:
     | T

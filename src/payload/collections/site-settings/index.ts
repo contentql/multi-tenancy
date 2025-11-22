@@ -382,6 +382,51 @@ export const SiteSettings: CollectionConfig = {
           ],
         },
         {
+          label: 'Custom Domain Configuration',
+          fields: [
+            {
+              type: 'array',
+              name: 'domains',
+              fields: [
+                {
+                  name: 'verified',
+                  type: 'checkbox',
+                  defaultValue: false,
+                  admin: {
+                    readOnly: true,
+                    description:
+                      'Indicates whether the custom domain has been verified',
+                    components: {
+                      Field:
+                        '@/payload/collections/custom-domains/components/VerifiedDomainField',
+                    },
+                  },
+                },
+                {
+                  name: 'hostname',
+                  type: 'text',
+                  admin: {
+                    description:
+                      'The custom domain hostname (e.g., example.com)',
+                  },
+                  required: true,
+                  unique: true,
+                },
+                {
+                  name: 'instructions',
+                  type: 'ui',
+                  admin: {
+                    components: {
+                      Field:
+                        '@/payload/collections/custom-domains/components/CustomDomainInstructions',
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
           label: 'Redirection Links',
           name: 'redirectionLinks',
           fields: [

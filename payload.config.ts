@@ -15,7 +15,6 @@ import { getUserTenantIDs } from '@/lib/getUserTenantIDs'
 import { isAdmin, isAdminAccess } from '@/payload/access/isAdmin'
 import { Tenants } from '@/payload/collections/Tenants'
 import { Blogs } from '@/payload/collections/blogs'
-import { CustomDomains } from '@/payload/collections/custom-domains'
 import { Media } from '@/payload/collections/media'
 import { Pages } from '@/payload/collections/pages'
 import { SiteSettings } from '@/payload/collections/site-settings'
@@ -172,16 +171,7 @@ export default buildConfig({
       titleSuffix: '- ContentQL',
     },
   },
-  collections: [
-    Users,
-    Tenants,
-    Media,
-    Pages,
-    Blogs,
-    Tags,
-    CustomDomains,
-    SiteSettings,
-  ],
+  collections: [Users, Tenants, Media, Pages, Blogs, Tags, SiteSettings],
   db: mongooseAdapter({
     url: env.DATABASE_URI,
   }),
@@ -245,7 +235,6 @@ export default buildConfig({
         media: {},
         blogs: {},
         tags: {},
-        customDomains: {},
         SiteSettings: { isGlobal: true },
         // tenants: {},
       },

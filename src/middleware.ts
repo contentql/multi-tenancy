@@ -115,19 +115,26 @@ export async function middleware(req: NextRequest) {
 
   if (!isSubdomain) {
     const { docs } = await payload.find({
-      collection: 'customDomains',
+      collection: 'SiteSettings',
+      draft: false,
+      limit: 1,
       where: {
-        hostname: { equals: currentHost },
+        'domains.hostname': { in: currentHost },
       },
-      depth: 1,
     })
 
-    console.dir({ domainDocs: docs }, { depth: null })
+    const siteSetting = docs.at(0)
+    const domains = siteSetting?.domains ?? []
 
-    const domain = docs.find(doc => doc.hostname === currentHost)
+    console.dir({ domainDocs: domains }, { depth: null })
+
+    const domain = domains.find(
+      doc => doc.hostname === currentHost && doc.verified,
+    )
 
     if (domain) {
-      const tenant = domain?.tenant
+      const tenant = siteSetting?.tenant
+
       if (tenant && typeof tenant === 'object' && tenant.slug) {
         url.pathname = `/${tenant.slug}${pathname}`
         return NextResponse.rewrite(url)
@@ -139,21 +146,26 @@ export async function middleware(req: NextRequest) {
   // e.g., A request to tenant-name.localhost:3000/about becomes /tenant-name/about
   if (isSubdomain && tenantFromSubdomain !== 'www') {
     const { docs } = await payload.find({
-      collection: 'customDomains',
+      collection: 'SiteSettings',
+      draft: false,
+      limit: 1,
       where: {
-        and: [
-          { hostname: { equals: currentHost } },
-          { verified: { equals: true } },
-        ],
+        'domains.hostname': { in: currentHost },
       },
-      depth: 1,
     })
 
-    console.dir({ subdomainDocs: docs }, { depth: null })
+    const siteSetting = docs.at(0)
+    const domains = siteSetting?.domains ?? []
 
-    const domain = docs.find(doc => doc.hostname === currentHost)
+    console.dir({ subdomainDocs: domains }, { depth: null })
+
+    const domain = domains.find(
+      doc => doc.hostname === currentHost && doc.verified,
+    )
+
     if (domain) {
-      const tenant = domain?.tenant
+      const tenant = siteSetting?.tenant
+
       if (tenant && typeof tenant === 'object' && tenant.slug) {
         url.pathname = `/${tenant.slug}${pathname}`
         return NextResponse.rewrite(url)
