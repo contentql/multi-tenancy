@@ -17,13 +17,13 @@ import { checkDNSConfigAction } from './checkDNSConfigAction'
 const VerifiedDomainField: React.FC<any> = props => {
   const { path } = props
   const tenant = useTenantSelection()
-  const tenantSlug = tenant.options.find(
+  const selectedTenant = tenant.options.find(
     opt => opt.value === tenant.selectedTenantID,
-  )?.label
+  )
 
   const MAIN_DOMAIN =
     env.NEXT_PUBLIC_WEBSITE_URL?.replace(/^https?:\/\//, '') || ''
-  const TENANT_DOMAIN = `${tenantSlug}.${MAIN_DOMAIN}`
+  const TENANT_DOMAIN = `${selectedTenant?.label}.${MAIN_DOMAIN}`
 
   const { value, setValue } = useField<boolean>({ path })
   const { id } = useDocumentInfo()
@@ -59,7 +59,11 @@ const VerifiedDomainField: React.FC<any> = props => {
 
           // Update the record in the database if verification status changed
           if (res.verified !== value && id) {
-            await updateVerificationStatus(id as string, res.verified)
+            await updateVerificationStatus({
+              siteSettingID: `${id}`,
+              hostname,
+              verified: res.verified,
+            })
           }
         }
         setDnsDetails(res)

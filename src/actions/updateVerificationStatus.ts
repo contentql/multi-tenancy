@@ -7,9 +7,17 @@ import { getPayload } from 'payload'
 
 // app/actions/updateVerificationStatus.ts or wherever you keep your server actions
 
-export async function updateVerificationStatus(id: string, verified: boolean) {
+export async function updateVerificationStatus({
+  siteSettingID,
+  hostname,
+  verified,
+}: {
+  siteSettingID: string
+  hostname: string
+  verified: boolean
+}) {
   try {
-    if (!id) {
+    if (!siteSettingID) {
       return {
         success: false,
         message: 'ID is required',
@@ -18,12 +26,29 @@ export async function updateVerificationStatus(id: string, verified: boolean) {
 
     const payload = await getPayload({ config })
 
+    const siteSetting = await payload.findByID({
+      collection: 'SiteSettings',
+      id: siteSettingID,
+    })
+
+    const domains = siteSetting.domains ?? []
+    const updateDomains = domains.map(domain => {
+      if (domain.hostname === hostname) {
+        return {
+          ...domain,
+          verified,
+        }
+      }
+
+      return domain
+    })
+
     // Update the custom domain record
     await payload.update({
-      collection: 'customDomains',
-      id,
+      collection: 'SiteSettings',
+      id: siteSetting?.id,
       data: {
-        verified,
+        domains: updateDomains,
       },
     })
 
@@ -33,6 +58,7 @@ export async function updateVerificationStatus(id: string, verified: boolean) {
     }
   } catch (error) {
     console.error('Error updating verification status:', error)
+
     return {
       success: false,
       message: 'Failed to update verification status',
