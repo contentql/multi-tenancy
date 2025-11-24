@@ -9,10 +9,6 @@ export const createTRPCContext = (req: NextRequest) => {
   }
 }
 
-const payload = await getPayload({
-  config: configPromise,
-})
-
 const t = initTRPC
   .context<Partial<Awaited<ReturnType<typeof createTRPCContext>>>>()
   .create({})
@@ -22,8 +18,13 @@ const isAuthenticated = t.middleware(async ({ ctx, next }) => {
   const req = ctx.req as NextRequest
 
   // ? const token = req.cookies.get('payload-token')
+  const payload = await getPayload({
+    config: configPromise,
+  })
 
   const { user, permissions } = await payload.auth({ headers: req.headers })
+
+  console.log({ user })
 
   if (!user) {
     throw new TRPCError({
@@ -36,6 +37,7 @@ const isAuthenticated = t.middleware(async ({ ctx, next }) => {
     ctx: {
       user,
       permissions,
+      payload,
     },
   })
 })
@@ -45,14 +47,16 @@ export const createCallerFactory = t.createCallerFactory // ! only for server si
 
 export const publicProcedure = t.procedure
 export const userProcedure = t.procedure.use(isAuthenticated)
+
 export const adminProcedure = t.procedure
   .use(isAuthenticated)
   .use(async ({ ctx, next }) => {
-    if (ctx?.user?.role?.includes('admin')) {
+    if (!ctx?.user?.role?.includes('admin')) {
       throw new TRPCError({
         code: 'UNAUTHORIZED',
         message: 'you are not an admin',
       })
     }
+
     return next({ ctx })
   })

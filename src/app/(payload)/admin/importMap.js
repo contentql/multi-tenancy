@@ -33,8 +33,8 @@ import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { default as default_98c0f4abadca2c088b1f10febe84908a } from '@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnFieldLabel'
 import { default as default_695e6fdd1491837f16025ec4015b207f } from '@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnField'
-import { default as default_f36c1c1e530c3a27a694041e1f51a226 } from '@/payload/collections/custom-domains/components/VerifiedDomainField'
-import { default as default_4e43c91c649f26dd3a178285997b6d97 } from '@/payload/collections/custom-domains/components/CustomDomainInstructions'
+import { default as default_404712f6c565a09c21db4aff22679a8d } from '@/payload/collections/site-settings/components/VerifiedDomainField'
+import { default as default_5949f02efced66a74ff690286ed9e342 } from '@/payload/collections/site-settings/components/CustomDomainInstructions'
 import { default as default_716d92e4b4cca6507e5e98f7e54f5349 } from '@/payload/fields/theme/ColorField'
 import { default as default_ec83c8500116c9123747ef2f266397c0 } from '@/payload/fields/theme/FontFieldDescription'
 import { default as default_d25165dc99ddf39f9b76c9dfbc43f7c3 } from '@/payload/fields/theme/RadiusField'
@@ -84,8 +84,8 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnFieldLabel#default": default_98c0f4abadca2c088b1f10febe84908a,
   "@/payload/plugins/schedule-doc-publish-plugin/fields/publishOn/components/CustomPublishOnField#default": default_695e6fdd1491837f16025ec4015b207f,
-  "@/payload/collections/custom-domains/components/VerifiedDomainField#default": default_f36c1c1e530c3a27a694041e1f51a226,
-  "@/payload/collections/custom-domains/components/CustomDomainInstructions#default": default_4e43c91c649f26dd3a178285997b6d97,
+  "@/payload/collections/site-settings/components/VerifiedDomainField#default": default_404712f6c565a09c21db4aff22679a8d,
+  "@/payload/collections/site-settings/components/CustomDomainInstructions#default": default_5949f02efced66a74ff690286ed9e342,
   "@/payload/fields/theme/ColorField#default": default_716d92e4b4cca6507e5e98f7e54f5349,
   "@/payload/fields/theme/FontFieldDescription#default": default_ec83c8500116c9123747ef2f266397c0,
   "@/payload/fields/theme/RadiusField#default": default_d25165dc99ddf39f9b76c9dfbc43f7c3,

@@ -5,6 +5,8 @@ import { RootLayout, handleServerFunctions } from '@payloadcms/next/layouts'
 import { ServerFunctionClient } from 'payload'
 import React from 'react'
 
+import TRPCProvider from '@/trpc/TRPCProvider'
+
 import { importMap } from './admin/importMap.js'
 import './custom.scss'
 
@@ -14,6 +16,7 @@ type Args = {
 
 const serverFunction: ServerFunctionClient = async function (args) {
   'use server'
+
   return handleServerFunctions({
     ...args,
     config: configPromise,
@@ -26,7 +29,7 @@ const Layout = ({ children }: Args) => (
     config={configPromise}
     importMap={importMap}
     serverFunction={serverFunction}>
-    {children}
+    <TRPCProvider>{children}</TRPCProvider>
   </RootLayout>
 )
 

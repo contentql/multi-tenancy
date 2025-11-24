@@ -11,27 +11,41 @@ import {
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 import { updateVerificationStatus } from '@/actions/updateVerificationStatus'
+import { trpc } from '@/trpc/client'
 
 import { checkDNSConfigAction } from './checkDNSConfigAction'
 
 const VerifiedDomainField: React.FC<any> = props => {
-  const { path } = props
+  const { path = '' } = props
   const tenant = useTenantSelection()
-  const selectedTenant = tenant.options.find(
-    opt => opt.value === tenant.selectedTenantID,
+  const selectedTenantID = `${tenant.selectedTenantID}`
+  const index = path.split('.')?.at(1)
+
+  const { data } = trpc.tenant.getTenantByID.useQuery(
+    {
+      tenantID: selectedTenantID,
+    },
+    {
+      enabled: !!selectedTenantID,
+    },
   )
 
   const MAIN_DOMAIN =
     env.NEXT_PUBLIC_WEBSITE_URL?.replace(/^https?:\/\//, '') || ''
-  const TENANT_DOMAIN = `${selectedTenant?.label}.${MAIN_DOMAIN}`
+  const TENANT_DOMAIN = `${data?.slug}.${MAIN_DOMAIN}`
 
   const { value, setValue } = useField<boolean>({ path })
   const { id } = useDocumentInfo()
 
-  const { hostname } = useFormFields(([fields]) => ({
-    hostname: fields?.hostname?.value as string | undefined,
-  }))
+  const { hostname } = useFormFields(([fields]) => {
+    return {
+      hostname: fields?.[`domains.${index}.hostname`]?.value as
+        | string
+        | undefined,
+    }
+  })
 
+  console.log({ data, props, index })
   const [loading, setLoading] = useState(false)
   const [dnsDetails, setDnsDetails] = useState<any>(null)
   const [lastChecked, setLastChecked] = useState<Date | null>(null)

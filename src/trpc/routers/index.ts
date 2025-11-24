@@ -7,6 +7,7 @@ import { tagRouter } from '@/trpc/routers/tag'
 
 import { formRouter } from './form'
 import { searchRouter } from './search'
+import { tenantRouter } from './tenant'
 
 export const appRouter = router({
   page: pageRouter,
@@ -16,6 +17,7 @@ export const appRouter = router({
   author: authorRouter,
   search: searchRouter,
   form: formRouter,
+  tenant: tenantRouter,
 })
 
 export type AppRouter = typeof appRouter

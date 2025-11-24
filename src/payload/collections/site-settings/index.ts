@@ -398,7 +398,7 @@ export const SiteSettings: CollectionConfig = {
                       'Indicates whether the custom domain has been verified',
                     components: {
                       Field:
-                        '@/payload/collections/custom-domains/components/VerifiedDomainField',
+                        '@/payload/collections/site-settings/components/VerifiedDomainField',
                     },
                   },
                 },
@@ -418,7 +418,7 @@ export const SiteSettings: CollectionConfig = {
                   admin: {
                     components: {
                       Field:
-                        '@/payload/collections/custom-domains/components/CustomDomainInstructions',
+                        '@/payload/collections/site-settings/components/CustomDomainInstructions',
                     },
                   },
                 },

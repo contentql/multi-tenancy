@@ -10,7 +10,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics'
 import Branding from '@/components/common/Branding'
 import Footer from '@/payload/blocks/common/Footer'
 import Navbar from '@/payload/blocks/common/Navbar'
-import Provider from '@/trpc/Provider'
+import Provider from '@/providers/Provider'
 import { MetadataProvider } from '@/utils/metadataContext'
 
 export const getCachedSiteSettings = (organization: string) =>

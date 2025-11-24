@@ -150,7 +150,10 @@ export async function middleware(req: NextRequest) {
       draft: false,
       limit: 1,
       where: {
-        'domains.hostname': { in: currentHost },
+        and: [
+          { 'domains.hostname': { in: currentHost } },
+          { 'domains.verified': { equals: true } },
+        ],
       },
     })
 
