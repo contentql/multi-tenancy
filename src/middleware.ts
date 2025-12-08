@@ -119,20 +119,14 @@ export async function middleware(req: NextRequest) {
       draft: false,
       limit: 1,
       where: {
-        'domains.hostname': { in: currentHost },
+        'domain.hostname': { equals: currentHost },
       },
     })
 
     const siteSetting = docs.at(0)
-    const domains = siteSetting?.domains ?? []
+    const domain = siteSetting?.domain
 
-    console.dir({ domainDocs: domains }, { depth: null })
-
-    const domain = domains.find(
-      doc => doc.hostname === currentHost && doc.verified,
-    )
-
-    if (domain) {
+    if (domain?.hostname === currentHost && domain?.verified) {
       const tenant = siteSetting?.tenant
 
       if (tenant && typeof tenant === 'object' && tenant.slug) {
@@ -151,22 +145,16 @@ export async function middleware(req: NextRequest) {
       limit: 1,
       where: {
         and: [
-          { 'domains.hostname': { in: currentHost } },
-          { 'domains.verified': { equals: true } },
+          { 'domain.hostname': { equals: currentHost } },
+          { 'domain.verified': { equals: true } },
         ],
       },
     })
 
     const siteSetting = docs.at(0)
-    const domains = siteSetting?.domains ?? []
+    const domain = siteSetting?.domain
 
-    console.dir({ subdomainDocs: domains }, { depth: null })
-
-    const domain = domains.find(
-      doc => doc.hostname === currentHost && doc.verified,
-    )
-
-    if (domain) {
+    if (domain?.hostname === currentHost && domain?.verified) {
       const tenant = siteSetting?.tenant
 
       if (tenant && typeof tenant === 'object' && tenant.slug) {

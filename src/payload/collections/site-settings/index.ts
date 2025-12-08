@@ -383,46 +383,40 @@ export const SiteSettings: CollectionConfig = {
         },
         {
           label: 'Custom Domain Configuration',
+          name: 'domain',
           fields: [
             {
-              type: 'array',
-              name: 'domains',
-              fields: [
-                {
-                  name: 'verified',
-                  type: 'checkbox',
-                  defaultValue: false,
-                  admin: {
-                    readOnly: true,
-                    description:
-                      'Indicates whether the custom domain has been verified',
-                    components: {
-                      Field:
-                        '@/payload/collections/site-settings/components/VerifiedDomainField',
-                    },
-                  },
+              name: 'verified',
+              type: 'checkbox',
+              defaultValue: false,
+              admin: {
+                readOnly: true,
+                description:
+                  'Indicates whether the custom domain has been verified',
+                components: {
+                  Field:
+                    '@/payload/collections/site-settings/components/VerifiedDomainField',
                 },
-                {
-                  name: 'hostname',
-                  type: 'text',
-                  admin: {
-                    description:
-                      'The custom domain hostname (e.g., example.com)',
-                  },
-                  required: true,
-                  unique: true,
+              },
+            },
+            {
+              name: 'hostname',
+              type: 'text',
+              admin: {
+                description: 'The custom domain hostname (e.g., example.com)',
+              },
+              required: true,
+              unique: true,
+            },
+            {
+              name: 'instructions',
+              type: 'ui',
+              admin: {
+                components: {
+                  Field:
+                    '@/payload/collections/site-settings/components/CustomDomainInstructions',
                 },
-                {
-                  name: 'instructions',
-                  type: 'ui',
-                  admin: {
-                    components: {
-                      Field:
-                        '@/payload/collections/site-settings/components/CustomDomainInstructions',
-                    },
-                  },
-                },
-              ],
+              },
             },
           ],
         },

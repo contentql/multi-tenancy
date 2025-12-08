@@ -104,5 +104,13 @@
   "prettier.plugins": ["@trivago/prettier-plugin-sort-imports"],
   "prettier.importOrder": ["<THIRD_PARTY_MODULES>", "^@/(.*)$", "^./(.*)$"],
   "prettier.importOrderSeparation": true,
-  "prettier.importOrderSortSpecifiers": true
+  "prettier.importOrderSortSpecifiers": true,
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
+
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.next/**": true
+  }
 }

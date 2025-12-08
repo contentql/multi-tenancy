@@ -19,7 +19,6 @@ const VerifiedDomainField: React.FC<any> = props => {
   const { path = '' } = props
   const tenant = useTenantSelection()
   const selectedTenantID = `${tenant.selectedTenantID}`
-  const index = path.split('.')?.at(1)
 
   const { data } = trpc.tenant.getTenantByID.useQuery(
     {
@@ -39,13 +38,11 @@ const VerifiedDomainField: React.FC<any> = props => {
 
   const { hostname } = useFormFields(([fields]) => {
     return {
-      hostname: fields?.[`domains.${index}.hostname`]?.value as
-        | string
-        | undefined,
+      hostname: fields?.[`domain.hostname`]?.value as string | undefined,
     }
   })
 
-  console.log({ data, props, index })
+  console.log({ data, props, hostname })
   const [loading, setLoading] = useState(false)
   const [dnsDetails, setDnsDetails] = useState<any>(null)
   const [lastChecked, setLastChecked] = useState<Date | null>(null)

@@ -214,9 +214,6 @@ export interface Media {
   focalX?: number | null;
   focalY?: number | null;
   sizes?: {
-    square?: {
-      url?: string | null;
-    };
     thumbnail?: {
       url?: string | null;
       width?: number | null;
@@ -783,19 +780,16 @@ export interface SiteSetting {
       | null;
     copyright?: string | null;
   };
-  domains?:
-    | {
-        /**
-         * Indicates whether the custom domain has been verified
-         */
-        verified?: boolean | null;
-        /**
-         * The custom domain hostname (e.g., example.com)
-         */
-        hostname: string;
-        id?: string | null;
-      }[]
-    | null;
+  domain: {
+    /**
+     * Indicates whether the custom domain has been verified
+     */
+    verified?: boolean | null;
+    /**
+     * The custom domain hostname (e.g., example.com)
+     */
+    hostname: string;
+  };
   redirectionLinks?: {
     /**
      * This redirects to a blog details page
@@ -1151,11 +1145,6 @@ export interface MediaSelect<T extends boolean = true> {
   sizes?:
     | T
     | {
-        square?:
-          | T
-          | {
-              url?: T;
-            };
         thumbnail?:
           | T
           | {
@@ -1425,12 +1414,11 @@ export interface SiteSettingsSelect<T extends boolean = true> {
             };
         copyright?: T;
       };
-  domains?:
+  domain?:
     | T
     | {
         verified?: T;
         hostname?: T;
-        id?: T;
       };
   redirectionLinks?:
     | T

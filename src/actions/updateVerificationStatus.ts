@@ -31,24 +31,25 @@ export async function updateVerificationStatus({
       id: siteSettingID,
     })
 
-    const domains = siteSetting.domains ?? []
-    const updateDomains = domains.map(domain => {
-      if (domain.hostname === hostname) {
-        return {
-          ...domain,
-          verified,
-        }
-      }
+    if (!siteSetting) {
+      return { success: false, message: 'SiteSettings record not found.' }
+    }
 
-      return domain
-    })
+    if (!siteSetting.domain) {
+      return { success: false, message: 'Domain configuration not found.' }
+    }
 
-    // Update the custom domain record
+    // Update only the verified field inside the single domain object
+    const updatedDomain = {
+      ...siteSetting.domain,
+      verified,
+    }
+
     await payload.update({
       collection: 'SiteSettings',
-      id: siteSetting?.id,
+      id: siteSetting.id,
       data: {
-        domains: updateDomains,
+        domain: updatedDomain,
       },
     })
 
